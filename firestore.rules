@@ -7,9 +7,9 @@ service cloud.firestore {
        }
      match /products/{prodId} {
           allow read: if true;
-          allow create: if request.auth != null && isAdmin == true;
-          allow update: if request.auth != null && isAdmin == true;
-          allow delete: if request.auth != null && isAdmin == true;
+          allow create: if request.auth != null && userIsAdmin() == true;
+          allow update: if request.auth != null && userIsAdmin() == true;
+          allow delete: if request.auth != null && userIsAdmin() == true;
           }
       match /users/{uid} {
             allow read: if request.auth.uid == uid;
